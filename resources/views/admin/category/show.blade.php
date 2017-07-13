@@ -11,7 +11,7 @@
         </div><!--/.row-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">List Category</h1>
+                <h1 class="page-header">List Category List</h1>
             </div>
         </div>
 
