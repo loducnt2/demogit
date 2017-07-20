@@ -1,1 +1,1 @@
-<?php echo "View chi tiet hoa don"; ?>
+<?php echo "View chi tiet hoa don---fix ---"; ?>

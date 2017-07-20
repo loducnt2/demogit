@@ -26,6 +26,7 @@ Route::group(['middleware'  => ['auth']], function (){
         // login nhưng phải với quyền admin
         Route::get('admin', 'Admin\DashboardController@index');
         Route::resource('admin/category', 'Admin\CategoryController');
+        Route::resource('admin/product', 'Admin\ProductController');
         //Route::resource('admin/category', 'Admin\CategoryController@index');
     });
 });
