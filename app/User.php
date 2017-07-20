@@ -8,7 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    public function group(){
+        return $this->belongsTo('App\Group');
+    }
     /**
      * The attributes that are mass assignable.
      *

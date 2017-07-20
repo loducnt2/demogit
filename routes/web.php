@@ -27,6 +27,7 @@ Route::group(['middleware'  => ['auth']], function (){
         Route::get('admin', 'Admin\DashboardController@index');
         Route::resource('admin/category', 'Admin\CategoryController');
         Route::resource('admin/product', 'Admin\ProductController');
+        Route::resource('admin/user', 'Admin\UserController');
         //Route::resource('admin/category', 'Admin\CategoryController@index');
     });
 });
