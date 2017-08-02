@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateGroupIdInUsersTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class UpdateGroupIdInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('group_id')->default(2)->change();
+        Schema::create('images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('product_id');
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class UpdateGroupIdInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('group_id')->change();
-        });
+        Schema::dropIfExists('images');
     }
 }

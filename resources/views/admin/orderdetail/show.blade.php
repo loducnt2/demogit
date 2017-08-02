@@ -1,35 +1,17 @@
-{{--<table border="1" style="border-collapse: collapse" width="40%">
-    <caption>User List</caption>
-    <tr>
-        <td>ID</td>
-        <td>Nmae</td>
-        <td>Email</td>
-        <td>Group_id</td>
-    </tr>
-    @foreach($user as $item)
-        <tr>
-            <td>{{ $item->id }}</td>
-            <td>{{ $item->name }}</td>
-            <td>{{ $item->email }}</td>
-            <!-- <td>{{ $item->group_id }}</td> -->
-            <td>{{ $item->group->name }}</td>
-        </tr>
-    @endforeach
-</table>--}}
 @extends('layouts.admin')
-@section('title') User - PHP @endsection
+@section('title') Orderdetail - PHP @endsection
 
 @section('content')
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="{{ url('admin') }}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                <li class="active">User</li>
+                <li class="active">Orderdetail</li>
             </ol>
         </div><!--/.row-->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User List</h1>
+                <h1 class="page-header">Orderdetail List</h1>
             </div>
         </div>
 
@@ -80,8 +62,9 @@
                                 </div>
                             </div>
 
-                            <a href="{{ url('admin/user/create') }}" class="btn">Create New</a>
-                            {{ Form::open(['method' => 'GET' , 'url' => 'admin/user']) }}
+                            <a href="# {{--{{ url('admin/orderdetail/create') }}--}}" class="btn">Create New</a>
+
+                            {{ Form::open(['method' => 'GET' , 'url' => 'admin/orderdetail']) }}
                             <input type="text" name="keyword"
                                    @if(Request::has('keyword'))
                                    value="{{ Request::get('keyword') }}"
@@ -102,71 +85,49 @@
                                                 <div class="th-inner "><input name="btSelectAll" type="checkbox"></div>
                                                 <div class="fht-cell"></div>
                                             </th>
+
                                             <th style="">
                                                 <div class="th-inner sortable">ID</div>
                                                 <div class="fht-cell"></div>
                                             </th>
+
                                             <th style="">
-                                                <div class="th-inner sortable">User Name<span class="order"><span
+                                                <div class="th-inner sortable">Name product<span class="order"><span
                                                                 class="caret" style="margin: 10px 5px;"></span></span></div>
                                                 <div class="fht-cell"></div>
                                             </th>
+
                                             <th style="">
-                                                <div class="th-inner sortable">Group_name<span class="order"><span
+                                                <div class="th-inner sortable">Price<span class="order"><span
                                                                 class="caret" style="margin: 10px 5px;"></span></span></div>
                                                 <div class="fht-cell"></div>
                                             </th>
+
                                             <th style="">
-                                                <div class="th-inner sortable">Email<span class="order"><span
+                                                <div class="th-inner sortable">Quantity<span class="order"><span
                                                                 class="caret" style="margin: 10px 5px;"></span></span></div>
                                                 <div class="fht-cell"></div>
                                             </th>
-                                            <th style="">
-                                                <div class="th-inner sortable">Last_name<span class="order"><span
-                                                                class="caret" style="margin: 10px 5px;"></span></span></div>
-                                                <div class="fht-cell"></div>
-                                            </th><th style="">
-                                                <div class="th-inner sortable">First name<span class="order"><span
-                                                                class="caret" style="margin: 10px 5px;"></span></span></div>
-                                                <div class="fht-cell"></div>
-                                            </th><th style="">
-                                                <div class="th-inner sortable">Phone number<span class="order"><span
-                                                                class="caret" style="margin: 10px 5px;"></span></span></div>
-                                                <div class="fht-cell"></div>
-                                            </th><th style="">
-                                                <div class="th-inner sortable">Address<span class="order"><span
-                                                                class="caret" style="margin: 10px 5px;"></span></span></div>
-                                                <div class="fht-cell"></div>
-                                            </th><th style="">
-                                                <div class="th-inner sortable">Gender<span class="order"><span
-                                                                class="caret" style="margin: 10px 5px;"></span></span></div>
-                                                <div class="fht-cell"></div>
-                                            </th>
+
                                             <th>
                                                 Action
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @if($user)
-                                            @foreach($user as $item)
+                                        @if($orderdetail)
+                                            @foreach($orderdetail as $item)
                                                 <tr>
                                                     <td>
                                                         <input type="checkbox" />
                                                     </td>
                                                     <td>{{ $item->id }}</td>
-                                                    <td>{{ $item->name }}</td>
-                                                    {{--<td>{{ $item->group_id }}</td>--}}
-                                                    <td>{{ $item->group->name }}</td>
-                                                    <td>{{ $item->email }}</td>
-                                                    <td>{{ $item->last_name }}</td>
-                                                    <td>{{ $item->first_name }}</td>
-                                                    <td>{{ $item->phone }}</td>
-                                                    <td>{{ $item->address }}</td>
-                                                    <td>{{ $item->gender }}</td>
+                                                    <td>{{ $item->product->title }}</td>
+                                                    <td>{{ $item->product->price }}</td>
+                                                    <td>{{ $item->quantity }}</td>
                                                     <td>
-                                                        {!! Form::open(['method' => 'DELETE', 'url' => 'admin/user/' . $item->id]) !!}
-                                                        <a href="{{ url('admin/user/'.$item->id.'/edit') }}"
+                                                        {!! Form::open(['method' => 'DELETE', 'url' => 'admin/orderdetail/' . $item->id]) !!}
+                                                        <a href="#{{--{{ url('admin/orderdetail/'.$item->id.'/edit') }}--}}"
                                                            class="btn">Edit</a>
                                                         <button type="submit" class="btn" onclick="return confirm('Bạn có chắc muốn xóa không?');">Delete</button>
                                                         {!! Form::close() !!}

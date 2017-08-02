@@ -16,7 +16,7 @@ class AddGroupIdColumnIntoUsers extends Migration
          Schema::table('users', function (Blueprint $table) {
             //
 			//$table->string('group_id')->after('password');
-			$table->integer('group_id')->default(2)->change();
+			$table->integer('group_id')->default(2);
         });
     }
 
@@ -30,7 +30,7 @@ class AddGroupIdColumnIntoUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
 			//$table->string('group_id')->after('password');
-			$table->integer('group_id')->change();
+			$table->integer('group_id');
         });
     }
 }

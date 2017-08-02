@@ -24,9 +24,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        if($request->has('keyword')){
+            $keyword = $request->get('keyword');
+            //die($keyword);
+
+            $products = Product::where('title', 'like', '%' . $keyword . '%')->get();
+        }else{
+            $products = Product::all();
+        }
+        
         return view('admin.product.show', ['products' => $products]);
     }
 
@@ -136,6 +144,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pro = Product::findOrFail($id);
+        $pro->delete();
+
+        Session::flash('success', "Deleted product successfully!!!");
+
+        return redirect('admin/product');
     }
 }

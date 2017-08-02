@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropGroupIdColumnIntoUsers extends Migration
+class AddColumnSupplierIdIntoProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class DropGroupIdColumnIntoUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
+        Schema::table('products', function (Blueprint $table) {
+            $table->integer('supplier_id')->default(1);
         });
     }
 
@@ -25,9 +25,8 @@ class DropGroupIdColumnIntoUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             //
-			//$table->string('group_id');
         });
     }
 }

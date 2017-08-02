@@ -2,39 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Orderdetail;
 use Session;
-class UserController extends Controller
+
+class OrderdetailController extends Controller
 {
-
-    public function __construct()
-    {
-
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if($request->has('keyword')){
-            $keyword = $request->get('keyword');
-            //die($keyword);
 
-            $list = User::where('name', 'like', '%' . $keyword . '%')->get();
-        }else{
-            $list = User::all();
-        }
+        $orderdetail = Orderdetail::all();
 
-        /*echo "<pre>";
-        print_r($list->toArray());
-        die();*/
-        return view('admin.user.show', ['user' => $list]);
+        return view('admin.orderdetail.show', ['orderdetail' => $orderdetail]);
     }
 
     /**
@@ -44,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.orderdetail.create');
     }
 
     /**
@@ -77,19 +62,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $group = Group::all();
-        $arrGr = [];
-        foreach ($group as $item) {
-            $arrGr[$item->id] = $item->name;
-        }
-        /*print_r($arrGr);*/
-
-        $user = User::findOrFail($id);
-
-        return view('admin.user.edit', [
-            'user' => $user,
-            'group' => $arrGr
-        ]);
+        //
     }
 
     /**
@@ -101,20 +74,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        $user->name = $request->name;
-        $user->group_id = $request->group_id;
-        $user->email = $request->email;
-        $user->last_name = $request->last_name;
-        $user->first_name = $request->first_name;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->gender = $request->gender;
-        $user->save();
-
-        Session::flash('success', 'Cap nhat san pham thanh cong');
-        return redirect('admin/user');
+        //
     }
 
     /**
@@ -125,11 +85,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        $cate = Orderdetail::findOrFail($id);
+        $cate->delete();
 
         Session::flash('success', "Bạn đã xóa thành công!!!");
 
-        return redirect('admin/user');
+        return redirect('admin/orderdetail');
     }
 }

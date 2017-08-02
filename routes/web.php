@@ -28,6 +28,9 @@ Route::group(['middleware'  => ['auth']], function (){
         Route::resource('admin/category', 'Admin\CategoryController');
         Route::resource('admin/product', 'Admin\ProductController');
         Route::resource('admin/user', 'Admin\UserController');
-        //Route::resource('admin/category', 'Admin\CategoryController@index');
+        Route::resource('admin/orderdetail', 'Admin\OrderdetailController');
+        Route::resource('admin/order', 'Admin\OrderController');
+        Route::resource('admin/supplier', 'Admin\SupplierController');
+        Route::resource('admin/image', 'Admin\ImageController');
     });
 });

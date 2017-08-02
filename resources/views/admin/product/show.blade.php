@@ -63,6 +63,7 @@
                             </div>
 
                             <a href="{{ url('admin/product/create') }}" class="btn">Create New</a>
+                            
                             {{ Form::open(['method' => 'GET' , 'url' => 'admin/product']) }}
                             <input type="text" name="keyword"
                                    @if(Request::has('keyword'))
